@@ -11,7 +11,7 @@ jobs:
           format: YYYYMMDD-HH
           utcOffset: "+08:00"
       - name: Use current time odd
-        if: ${{ strps.current-time.outputs.isOddWeek }}
+        if: ${{ steps.current-time.outputs.isOddWeek }}
         env:
           TIME: "${{ steps.current-time.outputs.time }}"
           R_TIME: "${{ steps.current-time.outputs.readableTime }}"
@@ -20,7 +20,7 @@ jobs:
           DAY: "${{ steps.current-time.outputs.day }}"
         run: echo odd $TIME $R_TIME $F_TIME $YEAR $DAY
       - name: Use current time even
-        if: ${{ !strps.current-time.outputs.isOddWeek }}
+        if: ${{ !steps.current-time.outputs.isOddWeek }}
         env:
           TIME: "${{ steps.current-time.outputs.time }}"
           R_TIME: "${{ steps.current-time.outputs.readableTime }}"
